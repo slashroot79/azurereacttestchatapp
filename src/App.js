@@ -4,14 +4,18 @@ import React, { useState, useEffect, useRef } from "react";
 import io from "socket.io-client";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Button, Card, Form, Container} from 'react-bootstrap'
+import axios from 'axios'
 
-const SERVER_ENDPOINT = "rknodechatapp.azurewebsites.net:6688";
+// {"host":req.headers.host, "method":req.method, "requrl":req.url, "statuscode":res.statusCode, "body":req.body }
+
+const SERVER_ENDPOINT = "http://localhost:4000";
 let socket;
 
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [room, setRoom] = useState('');
+  const [testData, setTestData] = useState({host:"", method:"", requrl:"", statuscode:"", body:"" })
   const [userName, setUserName] = useState('')
   const [message, setMessage] = useState('');
   const [messageList, setMessageList] = useState([]);
@@ -29,6 +33,7 @@ function App() {
 
   const connectToRoom = () =>{
     setLoggedIn(true);
+
     socket.emit("join_room", room);
   };
 
@@ -49,6 +54,24 @@ function App() {
     formRef.current.reset();
 
   };
+
+
+  const btnStyle = {
+    margin:"50px 0 0 100px",
+    border:"none",
+    backgroundColor:"orange",
+    borderRadius:5,
+    padding:"10px",
+    color:"white"
+  }
+
+  const resStyle = {
+    margin:"50px 0 0 100px",
+    border:"1px solid orange",
+    borderRadius:5,
+    padding:"10px",
+    color:"orange"
+  }
 
   return (
     <div>
@@ -95,6 +118,27 @@ function App() {
         )
     }
     </Form>
+
+    <button onClick={(e)=>{
+        axios.get(`${SERVER_ENDPOINT}/test`).then(res=>{
+          const {host:h,method:m,requrl:r,statuscode:s} = res.data
+          setTestData({
+            host:h,
+            method:m,
+            requrl:r,
+            statuscode:s
+          })
+          
+        })
+      }} 
+      style={btnStyle}>
+      Test Connection
+    </button>
+    
+      {
+        testData.host && <div style={resStyle}>Path: {testData.host}{testData.requrl} | StatusCode: {testData.statuscode}</div>
+      } 
+      
     </div>
   );
 
