@@ -5,7 +5,7 @@ import io from "socket.io-client";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Button, Card, Form, Container} from 'react-bootstrap'
 
-const SERVER_ENDPOINT = "rknodechatapp.scm.azurewebsites.net:5862";
+const SERVER_ENDPOINT = "rknodechatapp.azurewebsites.net:6688";
 let socket;
 
 
