@@ -8,7 +8,7 @@ import axios from 'axios'
 
 // {"host":req.headers.host, "method":req.method, "requrl":req.url, "statuscode":res.statusCode, "body":req.body }
 
-const SERVER_ENDPOINT = "http://localhost:4000";
+const SERVER_ENDPOINT = "https://rknodechatapp.azurewebsites.net:7676";
 let socket;
 
 
@@ -57,7 +57,7 @@ function App() {
 
 
   const btnStyle = {
-    margin:"50px 0 0 100px",
+    margin:"20px",
     border:"none",
     backgroundColor:"orange",
     borderRadius:5,
@@ -66,7 +66,7 @@ function App() {
   }
 
   const resStyle = {
-    margin:"50px 0 0 100px",
+    margin:"20px",
     border:"1px solid orange",
     borderRadius:5,
     padding:"10px",
