@@ -8,7 +8,7 @@ import axios from 'axios'
 
 // {"host":req.headers.host, "method":req.method, "requrl":req.url, "statuscode":res.statusCode, "body":req.body }
 
-const SERVER_ENDPOINT = "https://rknodechatapp.azurewebsites.net:7676";
+const SERVER_ENDPOINT = "https://rknodechatapp.azurewebsites.net";
 let socket;
 
 
